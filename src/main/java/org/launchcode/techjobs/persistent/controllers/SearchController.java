@@ -20,14 +20,14 @@ public class SearchController {
     @Autowired
     private JobRepository jobRepository;
 
-    @RequestMapping("")
+    @RequestMapping("") //http://localhost:8080/search
     public String search(Model model) {
         model.addAttribute("columns", columnChoices);
         return "search";
     }
 
     // TODO #3 - Create a handler to process a search request and render the updated search view.
-    @PostMapping("results")
+    @PostMapping("results") //http://localhost:8080/search
     public String displaySearchResults(Model model, @RequestParam String searchType, @RequestParam String searchTerm){
         Iterable<Job> jobs;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){

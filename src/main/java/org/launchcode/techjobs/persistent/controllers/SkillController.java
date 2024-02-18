@@ -17,14 +17,14 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
-    @GetMapping("/")
+    @GetMapping("/")  //http://localhost:8080/skills/
     public String index(Model model) {
         model.addAttribute("title", "All Skills");
         model.addAttribute("skills", skillRepository.findAll());
         return "skills/index";
     }
 
-    @GetMapping("add")
+    @GetMapping("add") //http://localhost:8080/skills/add
     public String displayAddSkillForm(Model model) {
 
         model.addAttribute(new Skill());
@@ -32,7 +32,7 @@ public class SkillController {
         return "skills/add";
     }
 
-    @PostMapping("add")
+    @PostMapping("add")  //http://localhost:8080/skills/add
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
                                          Errors errors, Model model) {
 
@@ -46,7 +46,7 @@ public class SkillController {
         return "redirect:";
     }
 
-    @GetMapping("view/{skillId}")
+    @GetMapping("view/{skillId}")  //http://localhost:8080/skills/view/1
     public String displayViewSkill(Model model, @PathVariable int skillId) {
 
         Optional optSkill = skillRepository.findById(skillId);

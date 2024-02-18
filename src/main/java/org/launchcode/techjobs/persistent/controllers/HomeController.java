@@ -32,7 +32,7 @@ public class HomeController {
     @Autowired
     private SkillRepository skillRepository;
 
-    @RequestMapping("/")
+    @RequestMapping("/") //http://localhost:8080/
     public String index(Model model) {
         model.addAttribute("jobs",jobRepository.findAll());
 
@@ -41,7 +41,7 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("add")
+    @GetMapping("add") //http://localhost:8080/add
     public String displayAddJobForm(Model model) {
 	    model.addAttribute("title", "Add Job");
         model.addAttribute("employers", employerRepository.findAll());
@@ -52,7 +52,7 @@ public class HomeController {
         return "add";
     }
 
-    @PostMapping("add")
+    @PostMapping("add") //http://localhost:8080/add
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
                                        Errors errors, Model model, int employerId, @RequestParam List<Integer> skills) {
 
@@ -78,7 +78,7 @@ public class HomeController {
         return "redirect:";
     }
 
-    @GetMapping("view/{jobId}")
+    @GetMapping("view/{jobId}") //http://localhost:8080/view/152
     public String displayViewJob(Model model, @PathVariable int jobId) {
 
             Optional<Job> result= jobRepository.findById(jobId);

@@ -40,14 +40,14 @@ public class ListController {
 
     }
 
-    @RequestMapping("")
+    @RequestMapping("")    //http://localhost:8080/list
     public String list(Model model) {
         model.addAttribute("employers", employerRepository.findAll());
         model.addAttribute("skills",skillRepository.findAll());
         return "list";
     }
 
-    @RequestMapping(value = "jobs")
+    @RequestMapping(value = "jobs") //http://localhost:8080/list/jobs?column=employer&value=Accenture   http://localhost:8080/list/jobs?column=skill&value=javascript
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         Iterable<Job> jobs;
         if (column.toLowerCase().equals("all")){
